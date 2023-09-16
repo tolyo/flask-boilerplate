@@ -1,0 +1,21 @@
+{
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently 'npm:browser' 'flask run --debug'",
+    "browser": "browser-sync start --files ['./**/*.js', './**/*.html',  './**/*.css']",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tolyo/flask-boilerplate.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/tolyo/flask-boilerplate/issues"
+  },
+  "homepage": "https://github.com/tolyo/flask-boilerplate#readme",
+  "devDependencies": {
+    "browser-sync": "^2.29.3",
+    "concurrently": "^8.2.1"
+  }
+}

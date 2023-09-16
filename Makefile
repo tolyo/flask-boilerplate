@@ -1,2 +1,5 @@
+setup:
+	@npm i
+
 run-dev:
-	@flask run --debug
+	@npm run start
