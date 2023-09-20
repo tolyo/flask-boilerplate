@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2018", "DOM"],
+    "target": "ES5",
+    "sourceMap": false,
+    "declaration": false,
+    "importHelpers": true,
+    "incremental": true,
+    "typeRoots": [
+      "lib/web/@types/",
+      "node_modules/@types/alpinejs"
+    ],
+  },
+  "include": [
+    "web/**/*.js",
+    "web/**/*.ts", "lib/web/utils",
+  ],
+  "exclude": [
+  ]
+}

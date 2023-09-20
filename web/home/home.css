@@ -1,0 +1,7 @@
+div:first-of-type {
+  text-align: center;
+}
+
+div:first-of-type > h1 {
+  margin-top: 10rem;
+}

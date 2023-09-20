@@ -1,0 +1,5 @@
+[
+  "https://unpkg.com/event-target-shim@6.0.2",
+  "//unpkg.com/alpinejs",
+  "https://cdn.jsdelivr.net/npm/@uirouter/core@6.1.0/_bundles/ui-router-core.js"
+]
