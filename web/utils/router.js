@@ -1,3 +1,9 @@
+// Create a custom DOMContentLoaded event to trigger resync of HTMX
+const domContentLoadedEvent = new Event("DOMContentLoaded", {
+  bubbles: true,
+  cancelable: true,
+});
+
 /**
  * Fetches content and renders it into the DOM for a given state definition.
  *
@@ -19,18 +25,20 @@ export function fetchIntoDom(stateDef) {
   const parentId = state.parent.name || "root";
 
   /**
-   * Extracts and constructs a URL path based on state parameters.
+   * The actual parameters being passed to view
    *
-   * @type {string}
+   * @type {import("@uirouter/core").StateParams}
    */
-  const pathSegments = Object.keys(state.params)
+  const stateParams = window.router.globals.params;
+
+  const pathSegments = Object.keys(stateParams)
     .filter(
       (key) =>
         key !== "server_path" &&
-        state.params[key] !== null &&
-        state.params[key] !== undefined,
+        stateParams[key] !== null &&
+        stateParams[key] !== undefined,
     )
-    .map((key) => `/${state.params[key]}`)
+    .map((key) => `/${stateParams[key]}`)
     .join("");
 
   /**
@@ -41,18 +49,27 @@ export function fetchIntoDom(stateDef) {
   const parent = document.getElementById(parentId);
 
   /**
+   * The server url that should return a new template
+   *
+   * @type {string}
+   */
+  const url = window.router.globals.params
+    ? stateDef.params.server_path + pathSegments
+    : stateDef.url;
+
+  /**
    * Fetches content from the server and renders it into the DOM.
    *
    * @type {Promise<Response>}
    */
-  return fetch(
-    stateDef.params.server_path
-      ? stateDef.params.server_path + pathSegments
-      : stateDef.url,
-  )
+  return fetch(url)
     .then((response) => response.text())
     .then((text) => {
       parent.innerHTML = text;
+    })
+    .then(() => {
+      // This will allow all HTMX attributes to function in partials
+      document.dispatchEvent(domContentLoadedEvent);
     });
 }
 
@@ -90,7 +107,7 @@ export function clearRenderedDom(stateDef) {
  * Generate an array of default CRUD controller route configurations for a given route name.
  *
  * @param {string} routeName - The base name of the route.
- * @returns {import('../../app.js').RouteConfig[]} An array of default route configurations.
+ * @returns {import('../app.js').RouteConfig[]} An array of default route configurations.
  */
 export function generateRouteConfig(routeName) {
   const baseServerPath = `/_${routeName}`;

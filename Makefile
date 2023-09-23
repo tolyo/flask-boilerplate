@@ -1,4 +1,10 @@
+# Frontend management make
+include web/Makefile
+
 default: help
+
+# Frontend make file context
+FRONTEND_CONTEXT = make -C web frontend
 
 INFO = "\033[32m[INFO]\033[0m"
 
@@ -8,27 +14,23 @@ help:
 
 clean:
 	@echo $(INFO) "Cleaning project..."
-	@rm -rf node_modules
-	@rm package-lock.json
+	$(FRONTEND_CONTEXT).clean
 	@echo $(INFO) "Complete. Run 'make setup' to install dependencies"
 
 setup:
-	@echo $(INFO) "Installing NPM dependencies..."
+	$(FRONTEND_CONTEXT).setup
 	@npm i
 	@echo $(INFO) "Complete. Run 'make start' to start server"
 
 # Helper for running dev mode
 start:
-	@flask run --debug
+	@flask run --debug &
+	@npm run browsersync
 
 lint:
-	@echo $(INFO) "Formatting Js/CSS"
-	@npm run format
-	@echo $(INFO) "Linting Js"
-	@npm run lint
+	$(FRONTEND_CONTEXT).lint
 	@echo $(INFO) "Complete"
 
 check:
-	@echo $(INFO) "Typechecking Js"
-	@npm run typecheck
+	$(FRONTEND_CONTEXT).check
 

@@ -20,7 +20,7 @@
 @import "./node_modules/@picocss/pico/css/themes/default.css";
 
 /* Import layout CSS submodule */
-@import "./web/layout/layout.css";
+@import "./layout/layout.css";
 
 /* Import home module */
-@import "./web/home/home.css";
+@import "./home/home.css";

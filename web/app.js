@@ -1,4 +1,5 @@
-import { clearRenderedDom, fetchIntoDom } from "./web/utils/router.js";
+import { clearRenderedDom, fetchIntoDom } from "./utils/router.js";
+import getProductRoutes from "./product/product.js";
 
 /**
  * @typedef {Object} RouteConfig
@@ -30,7 +31,7 @@ router.transitionService.onSuccess(
 
 // Route definitions
 [{ name: "home", url: "/", serverPath: "/_home" }]
-  .concat([])
+  .concat(getProductRoutes())
   .forEach(
     /**
      * @param {RouteConfig} config

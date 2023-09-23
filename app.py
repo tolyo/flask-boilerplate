@@ -4,7 +4,7 @@ from web.home import home
 app = Flask(
     __name__,
     template_folder='',
-    static_folder=''
+    static_folder='web'
 )
 
 @app.route('/')
