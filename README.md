@@ -12,3 +12,8 @@ A starter template for scalable Flask development using Python 3.9
 Activate env:
 `. .venv/bin/activate`
 
+Install dependencies:
+`make setup`
+
+Start dev server:
+`make start`

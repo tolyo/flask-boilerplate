@@ -4,6 +4,6 @@
     "browsersync": "browser-sync start --files ['./web/**/*.js', './web/**/*.html',  './web/**/*.css']"
   },
   "devDependencies": {
-    "browser-sync": "^2.29.3"
+    "browser-sync": "^2.23.7"
   }
 }

@@ -1,13 +1,5 @@
-/* Import custom theme styles */
-@import "./theme.css";
-
-/* Import custom font styles */
-@import "./fonts.css";
-
-/* Import main layout styles */
-@import "./main-layout.css";
 ui-view {
-  margin-top: 1rem;
+  margin-top: var(--scale-0);
   display: flex;
   flex-direction: column;
 }

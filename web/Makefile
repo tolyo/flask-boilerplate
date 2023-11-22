@@ -2,11 +2,15 @@ frontend.clean:
 	@rm -rf node_modules
 	@rm -rf deps
 	@rm -rf _build
-	@rm package-lock.json
 
 frontend.setup:
 	@echo $(INFO) "Installing NPM dependencies..."
 	@npm i web
+	@npx playwright install
+
+frontend.start:
+	@echo $(INFO) "Starting browsersync ..."
+	@npm run browsersync
 
 frontend.lint:
 	@echo $(INFO) "Formatting Js/CSS"
@@ -17,3 +21,7 @@ frontend.lint:
 frontend.check:
 	@echo $(INFO) "Typechecking Js"
 	@npm run typecheck
+
+frontend.test:
+	@echo $(INFO) "Playwright test JS"
+	@npm run playwright

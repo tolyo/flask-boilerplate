@@ -20,6 +20,7 @@ clean:
 setup:
 	$(FRONTEND_CONTEXT).setup
 	@npm i
+	@pip install -r requirements.txt
 	@echo $(INFO) "Complete. Run 'make start' to start server"
 
 # Helper for running dev mode
