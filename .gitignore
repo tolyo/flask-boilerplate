@@ -160,6 +160,7 @@ cython_debug/
 #.idea/
 
 .vscode/
+.idea
 # Node dependencies
 node_modules/
 package-lock.json
